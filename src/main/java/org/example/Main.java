@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Helpers helper = new Helpers();
         CifraDeCesar cesar = new CifraDeCesar();
+        CodigoMorse morse = new CodigoMorse();
 
         while (true) {
             helper.imprimeTitulo("Encrypt");
@@ -18,7 +19,7 @@ public class Main {
                     cesar.escolher();
                     break;
                 case 2:
-                    System.out.println("escolheu a 2");
+                    morse.escolher();
                     break;
                 default:
                     System.out.println("Escolha uma opção válida! (1/2)");

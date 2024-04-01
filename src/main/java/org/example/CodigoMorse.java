@@ -76,10 +76,20 @@ public class CodigoMorse {
         for (char letra : mensagemUpperCase.toCharArray()) {
             if (morseCodeMap.containsKey(letra)) {
                 mensagemEncripitada.append(morseCodeMap.get(letra));
+                mensagemEncripitada.append(" ");
             } else if (letra == ' ') {
                 mensagemEncripitada.append("/ ");
             }
         }
+        helper.imprimeMensagem(mensagem, mensagemEncripitada.toString());
         return mensagemEncripitada.toString();
+    }
+
+    public String decrypt(String mensagem) {
+        StringBuilder mensagemDesncripitada = new StringBuilder();
+
+
+
+        return mensagemDesncripitada.toString();
     }
 }
