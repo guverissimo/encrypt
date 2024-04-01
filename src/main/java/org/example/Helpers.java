@@ -5,29 +5,40 @@ import java.util.Scanner;
 public class Helpers {
     Scanner scanner = new Scanner(System.in);
 
+    public String aumentaTexto(String texto) {
+        return texto.toUpperCase();
+    }
 
-    public String StringInput(String frase) {
+    public String pegaTexto(String frase) {
         System.out.println(frase);
         scanner.nextLine();
         String mensagem = scanner.nextLine();
         return mensagem;
     }
-    public int IntInput(String frase) {
+    public int pegaInteiro(String frase) {
         System.out.println(frase);
-        int escolha = Integer.parseInt(scanner.next());
-        return escolha;
-    }
-    public void imprimeLogo() {
-        System.out.println();
-        System.out.println();
-        System.out.println("****** Encrypt ******");
-        System.out.println();
+        while (true) {
+            int escolha = 0;
 
+            if(scanner.hasNextInt()) {
+                escolha = scanner.nextInt();
+                return escolha;
+            }else {
+                System.out.println("Escolha uma opção válida!");
+                scanner.nextLine();
+            }
+        }
+    }
+    public void imprimeTitulo(String titulo) {
+        System.out.println();
+        System.out.println();
+        System.out.println("****** " + titulo + " ******");
+        System.out.println();
     }
 
     public void imprimeMensagem(String mensagem, String mensagemEncripitada) {
-        this.imprimeLogo();
-        System.out.println("Sua mensagem foi criptografada com sucesso!");
+        this.imprimeTitulo("Encrypt");
+        System.out.println("Sua mensagem foi processada com sucesso!");
         System.out.println();
         System.out.println("Mensagem original: ");
         System.out.println(mensagem);

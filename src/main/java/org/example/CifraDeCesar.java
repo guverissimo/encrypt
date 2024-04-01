@@ -3,16 +3,14 @@ package org.example;
 public class CifraDeCesar {
 
     public void escolher() {
-        System.out.println();
-        System.out.println("****** Cifra de Cesar ******");
-        System.out.println();
-        System.out.println("Escolha uma opção para encriptar sua frase: ");
+        helper.imprimeTitulo("Cifra de Cesar");
+
+        System.out.println("Escolha uma opção para processar sua frase: ");
         System.out.println("1 - Encripitar");
         System.out.println("2 - Desencripitar");
-        int escolha = helper.IntInput("Escolha uma opção(1/2): ");
-        int deslocamento = helper.IntInput("Digite o deslocamento para criptografia");
-        String mensagem = helper.StringInput("Digite a mensagem: ") ;
-
+        int escolha = helper.pegaInteiro("Escolha uma opção(1/2): ");
+        int deslocamento = helper.pegaInteiro("Digite o deslocamento para criptografia");
+        String mensagem = helper.pegaTexto("Digite a mensagem: ") ;
         switch (escolha) {
             case 1:
                 this.encrypt(mensagem, deslocamento);
@@ -45,21 +43,15 @@ public class CifraDeCesar {
                     }
                 }
                 mensagemEncriptada.append((char) ascii);
-
             } else {
                 mensagemEncriptada.append(letra);
             }
         }
-
         helper.imprimeMensagem(mensagem, mensagemEncriptada.toString());
         return mensagemEncriptada.toString();
     }
-
     public String decrypt(String mensagem, int deslocamento) {
         StringBuilder mensagemDescriptografada = new StringBuilder();
-
-
-
         return mensagemDescriptografada.toString();
     }
 }
