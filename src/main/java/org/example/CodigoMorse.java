@@ -5,49 +5,53 @@ import java.util.Map;
 
 public class CodigoMorse {
     Helpers helper = new Helpers();
-    private static final Map<Character, String> morseCodeMap = new HashMap<>();
-
+    private static final  Map<Character, String> codigoMorseMap = new HashMap<>();
+    private static final Map<String, Character> invertidoCodigoMorseMap = new HashMap<>();
     static {
-        morseCodeMap.put('A', ".-");
-        morseCodeMap.put('B', "-...");
-        morseCodeMap.put('C', "-.-.");
-        morseCodeMap.put('D', "-..");
-        morseCodeMap.put('E', ".");
-        morseCodeMap.put('F', "..-.");
-        morseCodeMap.put('G', "--.");
-        morseCodeMap.put('H', "....");
-        morseCodeMap.put('I', "..");
-        morseCodeMap.put('J', ".---");
-        morseCodeMap.put('K', "-.-");
-        morseCodeMap.put('L', ".-..");
-        morseCodeMap.put('M', "--");
-        morseCodeMap.put('N', "-.");
-        morseCodeMap.put('O', "---");
-        morseCodeMap.put('P', ".--.");
-        morseCodeMap.put('Q', "--.-");
-        morseCodeMap.put('R', ".-.");
-        morseCodeMap.put('S', "...");
-        morseCodeMap.put('T', "-");
-        morseCodeMap.put('U', "..-");
-        morseCodeMap.put('V', "...-");
-        morseCodeMap.put('W', ".--");
-        morseCodeMap.put('X', "-..-");
-        morseCodeMap.put('Y', "-.--");
-        morseCodeMap.put('Z', "--..");
-        morseCodeMap.put('1', ".----");
-        morseCodeMap.put('2', "..---");
-        morseCodeMap.put('3', "...--");
-        morseCodeMap.put('4', "....-");
-        morseCodeMap.put('5', ".....");
-        morseCodeMap.put('6', "-....");
-        morseCodeMap.put('7', "--...");
-        morseCodeMap.put('8', "---..");
-        morseCodeMap.put('9', "----.");
-        morseCodeMap.put('0', "-----");
+        codigoMorseMap.put('A', ".-");
+        codigoMorseMap.put('B', "-...");
+        codigoMorseMap.put('C', "-.-.");
+        codigoMorseMap.put('D', "-..");
+        codigoMorseMap.put('E', ".");
+        codigoMorseMap.put('F', "..-.");
+        codigoMorseMap.put('G', "--.");
+        codigoMorseMap.put('H', "....");
+        codigoMorseMap.put('I', "..");
+        codigoMorseMap.put('J', ".---");
+        codigoMorseMap.put('K', "-.-");
+        codigoMorseMap.put('L', ".-..");
+        codigoMorseMap.put('M', "--");
+        codigoMorseMap.put('N', "-.");
+        codigoMorseMap.put('O', "---");
+        codigoMorseMap.put('P', ".--.");
+        codigoMorseMap.put('Q', "--.-");
+        codigoMorseMap.put('R', ".-.");
+        codigoMorseMap.put('S', "...");
+        codigoMorseMap.put('T', "-");
+        codigoMorseMap.put('U', "..-");
+        codigoMorseMap.put('V', "...-");
+        codigoMorseMap.put('W', ".--");
+        codigoMorseMap.put('X', "-..-");
+        codigoMorseMap.put('Y', "-.--");
+        codigoMorseMap.put('Z', "--..");
+        codigoMorseMap.put('1', ".----");
+        codigoMorseMap.put('2', "..---");
+        codigoMorseMap.put('3', "...--");
+        codigoMorseMap.put('4', "....-");
+        codigoMorseMap.put('5', ".....");
+        codigoMorseMap.put('6', "-....");
+        codigoMorseMap.put('7', "--...");
+        codigoMorseMap.put('8', "---..");
+        codigoMorseMap.put('9', "----.");
+        codigoMorseMap.put('0', "-----");
+        codigoMorseMap.put(' ', "/");
 
 
         // Adicione mais caracteres e seus códigos Morse conforme necessário
     }
+
+
+
 
     public void escolher() {
         helper.imprimeTitulo("Código Morse");
@@ -61,7 +65,7 @@ public class CodigoMorse {
                 this.encrypt(mensagem);
                 break;
             case 2:
-                this.encrypt(mensagem);
+                this.decrypt(mensagem);
                 break;
             default:
                 System.out.println("Escolha uma opção válida! (1/2)");
@@ -73,9 +77,13 @@ public class CodigoMorse {
 
         String mensagemUpperCase = helper.aumentaTexto(mensagem);
 
+        if (mensagemUpperCase == "SOS") {
+            return "... --- ...";
+        }
+
         for (char letra : mensagemUpperCase.toCharArray()) {
-            if (morseCodeMap.containsKey(letra)) {
-                mensagemEncripitada.append(morseCodeMap.get(letra));
+            if (codigoMorseMap.containsKey(letra)) {
+                mensagemEncripitada.append(codigoMorseMap.get(letra));
                 mensagemEncripitada.append(" ");
             } else if (letra == ' ') {
                 mensagemEncripitada.append("/ ");
@@ -86,10 +94,21 @@ public class CodigoMorse {
     }
 
     public String decrypt(String mensagem) {
-        StringBuilder mensagemDesncripitada = new StringBuilder();
+        StringBuilder mensagemDesencripitada = new StringBuilder();
+        String mensagemOriginal= mensagem;
+        helper.aumentaTexto(mensagem);
+        String[] format = mensagem.split(" ");
 
+        for (Map.Entry<Character, String> entry : codigoMorseMap.entrySet()) {
+            invertidoCodigoMorseMap.put(entry.getValue(), entry.getKey());
+        }
 
-
-        return mensagemDesncripitada.toString();
+        for (int i = 0; i < format.length; i++) {
+            if (invertidoCodigoMorseMap.containsKey(format[i])) {
+                mensagemDesencripitada.append(invertidoCodigoMorseMap.get(format[i]));
+            }
+        }
+        helper.imprimeMensagem(mensagemOriginal, mensagemDesencripitada.toString());
+        return mensagemDesencripitada.toString();
     }
 }

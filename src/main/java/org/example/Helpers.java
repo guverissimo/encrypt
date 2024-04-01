@@ -43,7 +43,7 @@ public class Helpers {
         System.out.println("Mensagem original: ");
         System.out.println(mensagem);
         System.out.println();
-        System.out.println("Mensagem criptografada: ");
+        System.out.println("Mensagem processada: ");
         System.out.println(mensagemEncripitada);
         System.out.println();
     }
