@@ -10,6 +10,7 @@ public class CifraDeCesar {
         System.out.println("2 - Desencripitar");
         int escolha = helper.pegaInteiro("Escolha uma opção(1/2): ");
         int deslocamento = helper.pegaInteiro("Digite o deslocamento para criptografia");
+        System.out.println("É recomendado não utilizar acentuação! ");
         String mensagem = helper.pegaTexto("Digite a mensagem: ") ;
         switch (escolha) {
             case 1:
@@ -27,8 +28,10 @@ public class CifraDeCesar {
         StringBuilder mensagemEncriptada = new StringBuilder();
         for (int i = 0; i < mensagem.length(); i++) {
             char letra = mensagem.charAt(i);
+
             if (Character.isLetter(letra)) {
                 int ascii = (int) letra + deslocamento;
+
                 if (Character.isUpperCase(letra)) {
                     if (ascii < 65) {
                         ascii += 26;

@@ -6,25 +6,18 @@ public class Main {
         CifraDeCesar cesar = new CifraDeCesar();
         CodigoMorse morse = new CodigoMorse();
 
-        while (true) {
-            helper.imprimeTitulo("Encrypt");
-            System.out.println("Escolha uma opção para encriptar sua frase: ");
-            System.out.println("1 - Cifra de César");
-            System.out.println("2 - Código Morse");
+        helper.imprimeTitulo("Encrypt");
+        System.out.println("Escolha uma opção para encriptar sua frase: ");
+        System.out.println("1 - Cifra de César");
+        System.out.println("2 - Código Morse");
 
-            int escolha = helper.pegaInteiro("Escolha uma opção(1/2): ");
+        int escolha = helper.pegaInteiro("Escolha uma opção(1/2): ");
 
-            switch (escolha) {
-                case 1:
-                    cesar.escolher();
-                    break;
-                case 2:
-                    morse.escolher();
-                    break;
-                default:
-                    System.out.println("Escolha uma opção válida! (1/2)");
-            }
-            return;
+        if (escolha == 1) {
+            cesar.escolher();
+        } else if (escolha == 2) {
+            morse.escolher();
         }
+
     }
 }
